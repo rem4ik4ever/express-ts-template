@@ -24,10 +24,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const dotenv = __importStar(require("dotenv"));
+const ops_1 = require("./middlewares/ops");
 // initialize configuration
 dotenv.config();
 const port = process.env.SERVER_PORT;
 const app = express_1.default();
+app.use(ops_1.opsBasePath, ops_1.opsMiddleware);
 // define a route handler for the default home page
 app.get('/', (req, res) => {
     res.send(`Hello world from ${req.hostname}`);
